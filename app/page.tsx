@@ -7,9 +7,10 @@ import { StickyStory, type Story } from "@/components/StickyStory";
 import { DisplayStage } from "@/components/DisplayStage";
 import { Orbs } from "@/components/Orbs";
 import { LatestRelease } from "@/components/releases/LatestRelease";
-import { PlatformDownload } from "@/components/releases/PlatformDownload";
+import { DownloadGrid } from "@/components/releases/DownloadGrid";
 import { NoStable, Unavailable } from "@/components/releases/Unavailable";
 import { getReleases, latestStable } from "@/lib/releases/github";
+import { downloadRelease } from "@/lib/releases/manual";
 import { libraries } from "@/content/features";
 const h2 = "text-4xl font-semibold tracking-tight text-fg md:text-6xl";
 const features: Story[] = libraries.map((f) => ({ id: f.id, title: f.title, text: f.summary, points: f.points, shot: f.shot ?? "scriptures", href: `/features#${f.id}` }));
@@ -21,7 +22,7 @@ const workflow: Story[] = [
   { id: "w5", title: "Present with confidence", text: "Send content to the Live output and use Logo, Black and Clear when you need them.", shot: "output" } ];
 const audiences = [[Church, "Churches and ministries", "Run songs, scriptures and media from a single service schedule.", "md:col-span-2 md:row-span-2"], [CalendarDays, "Conferences and events", "Prepare content ahead and send it live in order.", ""], [GraduationCap, "Educational institutions", "Present lessons, announcements and media.", ""], [Building2, "Businesses and organizations", "Deliver meetings and presentations with a clear live output.", "md:col-span-2"]] as const;
 export default async function Home() {
-  const d = await getReleases(); const latest = d.ok ? latestStable(d.releases) : undefined;
+  const d = await getReleases(); const latest = d.ok ? latestStable(d.releases) : undefined; const dl = downloadRelease(latest);
   return (<>
     <Hero />
     <section id="overview" className="scroll-mt-20 py-28">
@@ -51,6 +52,6 @@ export default async function Home() {
       {d.ok ? (latest ? <LatestRelease release={latest} /> : <NoStable />) : <Unavailable />}</div></section>
     <section className="pb-32"><div className="mx-auto max-w-5xl px-5 text-center">
       <Reveal><h2 className={h2}>Your Next Presentation Starts Here.</h2><p className="mx-auto mt-5 max-w-xl text-lg text-muted">Get started with KelzStudio and bring your presentation workflow together in one powerful desktop application.</p></Reveal>
-      {latest ? <div className="mt-12 grid gap-6 text-left md:grid-cols-2"><PlatformDownload release={latest} platform="windows" /><PlatformDownload release={latest} platform="macos" /></div> : <div className="mt-12"><Unavailable what="Downloads are" /></div>}</div></section>
+      <div className="mt-12">{dl ? <DownloadGrid release={dl} /> : <Unavailable what="Downloads are" />}</div></div></section>
   </>);
 }
