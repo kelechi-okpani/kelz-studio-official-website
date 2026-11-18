@@ -6,6 +6,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { site } from "@/config/site";
 import { getReleases, latestStable } from "@/lib/releases/github";
+import { FloatingContact } from "@/components/FloatingContact";
 
 // Light unless the visitor explicitly saved "dark". System preference is deliberately ignored.
 const THEME_SCRIPT = `try{var t=localStorage.getItem("kelz-theme");document.documentElement.dataset.theme=t==="dark"?"dark":"light"}catch(e){document.documentElement.dataset.theme="light"}`;
@@ -53,6 +54,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Nav latest={latest?.version} />
         <main>{children}</main>
         <Footer latestTag={latest?.tag} />
+        <FloatingContact />
       </body>
     </html>
   );
