@@ -29,7 +29,7 @@ export const shots: Record<"hero" | "media" | "songs" | "scriptures" | "presenta
 export const site = {
   name: "KelzStudio",
   company: "KelzNova Ltd.",
-  tagline: "One Platform. Every Presentation.",
+  tagline: "One Platform. ForEvery Presentation.",
 
   description:
     "KelzStudio by KelzNova is an easy-to-use cross-platform presentation software for churches, worship teams, businesses, schools, event organizers, and organizations. Create and manage church lyrics, Bible verses, multimedia slides, announcements, and professional presentations with ease.",
@@ -107,6 +107,8 @@ export const site = {
     "presentation software for churches",
     "presentation software for events",
   ],
+
+  logo: "https://www.kelzstudio.com/logo.png",
 
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??

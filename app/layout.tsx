@@ -64,6 +64,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     "applicationCategory": "PresentationApplication",
     "description": site.description,
     "url": site.url,
+    "logo": site.logo,
     "brand": {
       "@type": "Brand",
       "name": site.company
@@ -72,6 +73,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
+    },
+    icons: {
+      icon: "/logo.png",
+      shortcut: "/logo.png",
+      apple: "/logo.png",
     }
   };
 
