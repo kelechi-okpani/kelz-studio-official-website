@@ -15,7 +15,7 @@ const STEP = 10;
 
 export default async function Releases({ searchParams }: { searchParams: SP }) {
   const sp = await searchParams; const data = await getReleases();
-  // GitHub unavailable (private repo, rate limit, network) or no releases published yet:
+  // GitHub unavailable (wrong repository, rate limit, network) or no releases published yet:
   // still show the current version and its downloads from the DOWNLOAD_* env settings.
   if (!data.ok || data.releases.length === 0) return <Fallback reason={data.ok ? undefined : data.reason} />;
 
@@ -44,7 +44,7 @@ export default async function Releases({ searchParams }: { searchParams: SP }) {
 
 function Fallback({ reason }: { reason?: string }) {
   const dl = downloadRelease(undefined);
-  const hint = process.env.NODE_ENV !== "production" && reason ? <p className="mt-6 rounded-lg border border-line bg-surface2 p-4 text-sm text-muted">Dev note: GitHub Releases could not be read ({reason}). Check GITHUB_OWNER / GITHUB_REPO, and add GITHUB_TOKEN if the repository is private.</p> : null;
+  const hint = process.env.NODE_ENV !== "production" && reason ? <p className="mt-6 rounded-lg border border-line bg-surface2 p-4 text-sm text-muted">Dev note: GitHub Releases could not be read ({reason}). Set GITHUB_OWNER / GITHUB_REPO to the public distribution repository. GITHUB_TOKEN can raise API limits, but cannot make private assets public.</p> : null;
   if (!dl) return <Shell><Unavailable />{hint}</Shell>;
   return (
     <Shell>
