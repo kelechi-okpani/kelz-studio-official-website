@@ -6,7 +6,7 @@ export default function HowItWorks() {
   const cats = [...new Set(tutorials.map((t) => t.category))];
   return (
     <div className="mx-auto max-w-4xl px-5 pb-24 pt-32">
-      <h1 className="text-4xl font-semibold text-fg md:text-6xl">How It Works</h1>
+      <h1 className="text-3xl font-semibold text-fg md:text-4xl">How It Works</h1>
       <p className="mt-4 text-muted">Practical guides that follow the real KelzStudio interface.</p>
       {cats.map((c) => <section key={c} className="mt-12"><h2 className="text-sm tracking-widest text-glow">{c.toUpperCase()}</h2>
         <ul className="mt-4 divide-y divide-line border-y border-line">{tutorials.filter((t) => t.category === c).map((t) => (

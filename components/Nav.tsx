@@ -28,7 +28,7 @@ export function Nav({ latest }: { latest?: string }) {
         </div>
       </div>
       <AnimatePresence>{open && <motion.div id="mobile-menu" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden border-t border-line md:hidden">
-        <nav aria-label="Mobile" className="flex flex-col px-5 pb-5">{nav.map((n) => <Link key={n.label} href={n.href} onClick={() => setOpen(false)} className="border-b border-line py-3.5 text-lg text-fg">{n.label}</Link>)}
+        <nav aria-label="Mobile" className="flex flex-col px-5 pb-5">{nav.map((n) => <Link key={n.label} href={n.href} onClick={() => setOpen(false)} className="border-b border-line py-3.5 text-base text-fg">{n.label}</Link>)}
           <Link href="/download" onClick={() => setOpen(false)} className="btn-primary mt-4">Download KelzStudio</Link></nav></motion.div>}</AnimatePresence>
     </header>
   );

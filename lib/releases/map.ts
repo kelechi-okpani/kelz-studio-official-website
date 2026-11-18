@@ -10,7 +10,7 @@ export function classifyAsset(a: any): PlatformAsset | null {
   const ext = name.split(".").pop()!.toLowerCase();
   const platform = rule?.platform ?? (/^(exe|msi)$/.test(ext) ? "windows" : /^(dmg|pkg)$/.test(ext) ? "macos" : null);
   if (!platform) return null;
-  return { id: a.id, name, platform, arch: rule?.arch ?? archOf(name), format: `.${ext}`, size: a.size ?? 0, url: a.browser_download_url, digest: typeof a.digest === "string" ? a.digest : undefined };
+  return { id: a.id, name, platform, arch: rule?.arch ?? archOf(name), format: `.${ext}`, size: a.size ?? 0, url: a.browser_download_url, downloads: typeof a.download_count === "number" ? a.download_count : undefined, digest: typeof a.digest === "string" ? a.digest : undefined };
 }
 export function toRelease(r: any): Release | null {
   if (r.draft || !r.tag_name || !r.published_at) return null;

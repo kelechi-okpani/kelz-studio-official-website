@@ -30,8 +30,8 @@ export function Hero() {
       <div className="grid-bg absolute inset-0" aria-hidden />
       <div className="relative mx-auto max-w-5xl px-5 text-center">
         <motion.p {...up(0)} className="text-sm font-semibold tracking-[.2em] text-glow">ONE PLATFORM. EVERY PRESENTATION.</motion.p>
-        <motion.h1 {...up(0.1)} className="mt-6 text-5xl font-semibold leading-[1.05] tracking-tight text-fg sm:text-6xl md:text-7xl lg:text-[5.25rem]">Every Presentation. <span className="text-brand dark:text-glow">One Powerful Platform.</span></motion.h1>
-        <motion.p {...up(0.25)} className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">Create, organize, and deliver professional presentations with KelzStudio — powerful desktop presentation software designed for churches, businesses, events, and organizations.</motion.p>
+        <motion.h1 {...up(0.1)} className="mt-6 text-4xl font-semibold leading-[1.05] tracking-tight text-fg sm:text-4xl md:text-5xl lg:text-[3.75rem]">Every Presentation. <span className="text-brand dark:text-glow">One Powerful Platform.</span></motion.h1>
+        <motion.p {...up(0.25)} className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted md:text-lg">Create, organize, and deliver professional presentations with KelzStudio — powerful desktop presentation software designed for churches, businesses, events, and organizations.</motion.p>
         <motion.div {...up(0.4)} className="mt-10 flex flex-wrap justify-center gap-3"><Link href="/download" className="btn-primary">Download KelzStudio</Link><Link href="/features" className="btn-ghost">Explore Features</Link></motion.div>
         <motion.p {...up(0.5)} className="mt-5 text-sm text-muted">Available for Windows and macOS</motion.p>
       </div>

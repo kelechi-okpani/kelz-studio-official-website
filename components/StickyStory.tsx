@@ -12,8 +12,8 @@ function Item({ it, i, active, done, numbered, onActive }: { it: Story; i: numbe
   return (
     <div ref={ref} id={it.id} className={`scroll-mt-28 border-l-2 py-10 pl-7 transition-all duration-500 lg:flex lg:min-h-[70vh] lg:flex-col lg:justify-center ${active ? "border-brand dark:border-glow" : "border-line lg:opacity-45"}`}>
       {numbered && <span className={`mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full text-sm font-semibold transition-colors ${active || done ? "bg-brand text-on-brand" : "bg-surface2 text-muted"}`}>{done ? <Check size={16} /> : `0${i + 1}`}</span>}
-      <h3 className="text-3xl font-semibold tracking-tight text-fg md:text-4xl">{it.title}</h3>
-      <p className="mt-4 max-w-md text-lg leading-relaxed text-muted">{it.text}</p>
+      <h3 className="text-2xl font-semibold tracking-tight text-fg md:text-3xl">{it.title}</h3>
+      <p className="mt-4 max-w-md text-base leading-relaxed text-muted">{it.text}</p>
       {it.points && <ul className="mt-5 max-w-md space-y-2 text-fg/80">{it.points.map((p) => <li key={p} className="flex gap-2.5"><Check size={18} className="mt-1 shrink-0 text-glow" />{p}</li>)}</ul>}
       {it.href && <Link href={it.href} className="mt-6 text-sm font-medium text-glow hover:underline">Learn more →</Link>}
       <div className="mt-8 lg:hidden"><Shot name={it.shot} /></div>

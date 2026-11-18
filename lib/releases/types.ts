@@ -1,6 +1,6 @@
 export type Platform = "windows" | "macos";
 export type Arch = "x64" | "arm64" | "universal" | "unknown";
-export interface PlatformAsset { id: number; name: string; platform: Platform; arch: Arch; format: string; size: number; url: string; digest?: string; sizeLabel?: string; source?: "github" | "env" }
+export interface PlatformAsset { id: number; name: string; platform: Platform; arch: Arch; format: string; size: number; url: string; digest?: string; sizeLabel?: string; downloads?: number; source?: "github" | "env" }
 export type NoteCategory = "features" | "improvements" | "fixes" | "performance" | "compatibility" | "security";
 export interface NoteSection { category?: NoteCategory; title: string; markdown: string }
 export interface Release { tag: string; version: string; name: string; publishedAt: string; prerelease: boolean; url: string; body: string; summary: string; sections: NoteSection[]; assets: PlatformAsset[] }
