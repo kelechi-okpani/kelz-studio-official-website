@@ -1,3 +1,6 @@
+import { randomUUID } from "node:crypto";
+import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { join } from "node:path";
 import { neon, type NeonQueryFunction } from "@neondatabase/serverless";
 
 export const downloadClickPlatforms = ["windows", "mac_intel", "mac_silicon", "macos"] as const;
@@ -6,10 +9,18 @@ export type DownloadClickPlatform = (typeof downloadClickPlatforms)[number];
 const isDownloadClickPlatform = (value: unknown): value is DownloadClickPlatform =>
   typeof value === "string" && downloadClickPlatforms.includes(value as DownloadClickPlatform);
 
-const localDevelopmentCounts = new Map<DownloadClickPlatform, number>();
-
 let sqlClient: NeonQueryFunction<false, false> | undefined;
 let schemaReady: Promise<void> | undefined;
+let localStoreQueue: Promise<void> = Promise.resolve();
+
+interface LocalDownloadClick {
+  platform: DownloadClickPlatform;
+  releaseVersion: string;
+  assetName: string;
+  clickedAt: string;
+}
+
+const localStorePath = join(process.cwd(), ".data", "download-clicks.json");
 
 function getSql() {
   const connectionString = process.env.DATABASE_URL?.trim();
@@ -50,9 +61,63 @@ async function ensureSchema() {
   return sql;
 }
 
+function isLocalDownloadClick(value: unknown): value is LocalDownloadClick {
+  if (!value || typeof value !== "object") return false;
+  const click = value as Record<string, unknown>;
+  return (
+    isDownloadClickPlatform(click.platform) &&
+    typeof click.releaseVersion === "string" &&
+    typeof click.assetName === "string" &&
+    typeof click.clickedAt === "string"
+  );
+}
+
+async function readLocalClicks(): Promise<LocalDownloadClick[]> {
+  let contents: string;
+  try {
+    contents = await readFile(localStorePath, "utf8");
+  } catch (error) {
+    if (error && typeof error === "object" && "code" in error && error.code === "ENOENT") return [];
+    throw error;
+  }
+
+  const parsed: unknown = JSON.parse(contents);
+  if (!Array.isArray(parsed) || !parsed.every(isLocalDownloadClick)) {
+    throw new Error("Local download click storage contains invalid data.");
+  }
+  return parsed;
+}
+
+function withLocalStore<T>(operation: () => Promise<T>): Promise<T> {
+  const result = localStoreQueue.then(operation);
+  localStoreQueue = result.then(
+    () => undefined,
+    () => undefined,
+  );
+  return result;
+}
+
+async function appendLocalClick(click: LocalDownloadClick): Promise<number> {
+  return withLocalStore(async () => {
+    const clicks = await readLocalClicks();
+    clicks.push(click);
+    await mkdir(join(process.cwd(), ".data"), { recursive: true });
+
+    const temporaryPath = `${localStorePath}.${randomUUID()}.tmp`;
+    await writeFile(temporaryPath, JSON.stringify(clicks), { encoding: "utf8", flag: "wx" });
+    await rename(temporaryPath, localStorePath);
+    return clicks.filter((savedClick) => savedClick.platform === click.platform).length;
+  });
+}
+
 async function countForPlatform(platform: DownloadClickPlatform): Promise<number> {
   const sql = await ensureSchema();
-  if (!sql) return localDevelopmentCounts.get(platform) ?? 0;
+  if (!sql) {
+    return withLocalStore(async () => {
+      const clicks = await readLocalClicks();
+      return clicks.filter((click) => click.platform === platform).length;
+    });
+  }
 
   const rows = await sql`
     SELECT COUNT(*)::TEXT AS count
@@ -82,9 +147,12 @@ export async function recordDownloadClick({
 }): Promise<number> {
   const sql = await ensureSchema();
   if (!sql) {
-    const count = (localDevelopmentCounts.get(platform) ?? 0) + 1;
-    localDevelopmentCounts.set(platform, count);
-    return count;
+    return appendLocalClick({
+      platform,
+      releaseVersion,
+      assetName,
+      clickedAt: new Date().toISOString(),
+    });
   }
   await sql`
     INSERT INTO kelzstudio_download_clicks (platform, release_version, asset_name)
