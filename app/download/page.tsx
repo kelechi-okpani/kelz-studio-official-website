@@ -19,8 +19,12 @@ export default async function Download() {
         <div className="mt-10 flex flex-wrap items-center gap-4">{dl.version && <VersionBadge version={dl.version} latest={!!r} />}{dl.publishedAt && <span className="text-sm text-muted">Published {fmtDate(dl.publishedAt)}</span>}
           {r && <Link href={`/releases/${encodeURIComponent(r.tag)}`} className="text-sm font-medium text-glow hover:underline">Release notes →</Link>}</div>
         {d.ok && d.stale && <div className="mt-6"><Stale at={d.fetchedAt} /></div>}
+      
         <div className="mt-8"><DownloadGrid release={dl} /></div>
-        {r && d.ok && <DownloadStats release={r} all={d.releases} />}</>}
+        
+        {/* {r && d.ok && <DownloadStats release={r} all={d.releases} />} */}
+        
+        </>}
       <p className="mt-10 text-sm text-muted">Need an earlier version? <Link href="/releases" className="text-glow hover:underline">View all releases</Link>. Installer signing and notarization status is not stated here until it has been confirmed.</p>
     </div>);
 }

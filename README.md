@@ -16,6 +16,12 @@ Set the public release repository in the Vercel project's server-side environmen
 
 `GITHUB_TOKEN` is optional for public releases, but a fine-grained read-only token for the public repository avoids GitHub's lower unauthenticated API rate limit. If used, keep it server-side; never expose it through a `NEXT_PUBLIC_` variable. The website supports both repository setting styles and uses the latest stable release.
 
+### Download button click counts
+
+The download buttons also display and increment persistent click counts for Windows, macOS Intel, and Apple Silicon. These are website button clicks (recorded before redirecting to the installer), separate from GitHub's actual asset download counts. Generic macOS assets with no architecture label use a separate macOS count.
+
+Set `DATABASE_URL` to a Neon PostgreSQL connection string in the local `.env.local` file and in the Vercel project's server-side environment variables. The site creates `kelzstudio_download_clicks` and its platform index on first use; each button click is stored with its platform, release version, asset name, and timestamp. Counts are read from the database, so they persist across deployments. Keep the connection string secret and never expose it through a `NEXT_PUBLIC_` variable. If tracking is unavailable, the download still starts and the page reports that the click could not be counted.
+
 ### Vercel deployment
 
 1. Import the private website repository into Vercel and grant Vercel access to it.
