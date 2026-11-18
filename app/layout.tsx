@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -53,6 +54,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Nav latest={latest?.version} />
         <main>{children}</main>
         <Footer latestTag={latest?.tag} />
+        <SpeedInsights />
       </body>
     </html>
   );
