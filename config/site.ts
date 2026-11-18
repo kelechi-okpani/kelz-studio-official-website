@@ -1,29 +1,17 @@
 export const site = {
   name: "KelzStudio",
   company: "KelzNova Ltd.",
-  tagline: "One Platform. For Every Presentation.",
-  description: "A cross-platform, easy-to-use presentation software for churches, businesses, events, and organizations.",
+  tagline: "One Platform. Every Presentation.",
+  description: "A powerful, easy-to-use presentation software for churches, businesses, events, and organizations.",
   // TODO: set once the official domain is known (enables canonical URLs, sitemap, OG).
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "",
   // TODO: supply official details. Nothing here is invented.
   supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "",
+  // International format, digits only (e.g. 2348012345678). Leave empty to hide the WhatsApp button.
+  whatsappNumber: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(/\D/g, ""),
+  whatsappMessage: process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ?? "Hello KelzNova, I have a question about KelzStudio.",
   issuesUrl: process.env.NEXT_PUBLIC_ISSUES_URL ?? "",
-
-// whatsappNumber: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(/\D/g, ""),
-whatsappMessage: process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ?? "Hello Kelz Studio! I would like to make an enquiry about your presentation software. Please share more information about its features, pricing, and how I can get started.",
-whatsappNumber: (() => {
-  const raw = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(/\D/g, "");
-  // Nigerian local format 0801... -> 234801...
-  return raw.length === 11 && raw.startsWith("0") ? "234" + raw.slice(1) : raw;
-})(),
-
 };
-
-
-
-
-
-
 export const nav = [
   { label: "Overview", href: "/#overview" },
   { label: "Features", href: "/features" },

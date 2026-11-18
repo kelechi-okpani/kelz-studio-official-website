@@ -12,9 +12,9 @@ export default async function Tutorial({ params }: P) {
   return (
     <article className="mx-auto max-w-3xl px-5 pb-24 pt-32">
       <Link href="/how-it-works" className="text-sm text-glow">← All guides</Link>
-      <h1 className="mt-4 text-4xl font-semibold text-fg">{t.title}</h1>
+      <h1 className="mt-4 text-3xl font-semibold text-fg">{t.title}</h1>
       <p className="mt-2 text-sm text-muted">{t.level} · {t.minutes} min read</p>
-      <p className="mt-6 text-lg text-fg/80">{t.intro}</p>
+      <p className="mt-6 text-base text-fg/80">{t.intro}</p>
       <ol className="mt-10 space-y-8">{t.steps.map((s, n) => (
         <li key={n} className="flex gap-4"><span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-semibold text-on-brand">{n + 1}</span>
           <div><p className="text-fg/80">{s.text}</p>{s.shot && <Image src={s.shot} alt="" width={1500} height={800} className="mt-4 h-auto w-full rounded-md border border-line" />}</div></li>))}</ol>

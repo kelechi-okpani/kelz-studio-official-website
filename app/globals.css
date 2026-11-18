@@ -11,10 +11,7 @@ body { @apply bg-bg text-fg antialiased; transition: background-color .35s ease,
   background-image: radial-gradient(60rem 28rem at 50% -8%, rgb(var(--glow) / .14), transparent 70%); background-repeat: no-repeat; }
 .grid-bg { background-image: linear-gradient(rgb(var(--line)) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--line)) 1px, transparent 1px); background-size: 56px 56px; mask-image: radial-gradient(ellipse at top, #000 25%, transparent 70%); opacity:.7; }
 a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible { outline: 2px solid rgb(var(--glow)); outline-offset: 3px; border-radius: 6px; }
-@keyframes fab-in {
-  from { opacity: 0; transform: translateY(16px) scale(.9); }
-  to   { opacity: 1; transform: none; }
-}
+@keyframes fab-in { from { opacity: 0; transform: translateY(16px) scale(.9); } to { opacity: 1; transform: none; } }
 @layer components {
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium transition duration-200 active:scale-[.98]; }
   .btn-primary { @apply btn bg-brand text-on-brand shadow-lg shadow-brand/25 hover:-translate-y-0.5 hover:opacity-90; }

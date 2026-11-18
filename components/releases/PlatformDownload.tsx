@@ -12,7 +12,7 @@ export function PlatformDownload({ release, platform, arch }: { release: Release
     <div className="relative overflow-hidden rounded-2xl border border-line bg-surface p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgb(var(--shadow)/.4)]">
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand to-glow" aria-hidden />
       <div className="flex items-center gap-3 text-fg"><span className="flex h-12 w-12 items-center justify-center rounded-xl bg-surface2 text-brand dark:text-glow">{platform === "windows" ? <Win /> : <Apple size={26} />}</span>
-        <div><h3 className="text-xl font-semibold">KelzStudio for {base}{arch ? <span className="block text-base font-medium text-muted">{arch === "arm64" ? "Apple Silicon" : "Intel"}</span> : null}</h3>{meta && <p className="text-sm text-muted">{meta}</p>}</div></div>
+        <div><h3 className="text-lg font-semibold">KelzStudio for {base}{arch ? <span className="block text-base font-medium text-muted">{arch === "arm64" ? "Apple Silicon" : "Intel"}</span> : null}</h3>{meta && <p className="text-sm text-muted">{meta}</p>}</div></div>
       {requirements[platform] && <p className="mt-4 text-sm text-muted">Requires {requirements[platform]}</p>}
       {assets.length === 0 ? <p role="status" className="mt-6 rounded-lg border border-dashed border-line px-5 py-3 text-center text-muted">No {label} installer is available in this release.</p>
         : <div className="mt-6 space-y-5">{assets.map((a) => { const size = a.sizeLabel ?? (a.size ? fmtBytes(a.size) : ""); return (
@@ -21,7 +21,8 @@ export function PlatformDownload({ release, platform, arch }: { release: Release
             {a.format && <div className="flex justify-between"><dt className="text-muted">Format</dt><dd className="text-fg">{a.format}</dd></div>}
             {!arch && archLabel[a.arch] && <div className="flex justify-between"><dt className="text-muted">Architecture</dt><dd className="text-fg">{archLabel[a.arch]}</dd></div>}
             {size && <div className="flex justify-between"><dt className="text-muted">Size</dt><dd className="text-fg">{size}</dd></div>}
+            {a.downloads !== undefined && <div className="flex justify-between"><dt className="text-muted">Downloads</dt><dd className="font-medium text-fg">{a.downloads.toLocaleString("en-US")}</dd></div>}
             {a.digest && <div className="flex justify-between gap-4"><dt className="shrink-0 text-muted">{a.source === "env" ? "Checksum" : "Checksum (GitHub)"}</dt><dd className="break-all text-right font-mono text-xs text-fg">{a.digest}</dd></div>}</dl>
-            <a href={a.url} className="btn-primary mt-4 w-full"><Download size={18} />Download for {label}{!arch && archLabel[a.arch] && assets.length > 1 ? ` (${archLabel[a.arch]})` : ""}</a></div>); })}</div>}
+            <a href={a.url} className="btn-primary mt-4 w-full"><Download size={18} />Download for {arch ? (arch === "arm64" ? "Apple Silicon" : "Intel") : label}{!arch && archLabel[a.arch] && assets.length > 1 ? ` (${archLabel[a.arch]})` : ""}</a></div>); })}</div>}
     </div>);
 }

@@ -5,12 +5,12 @@ export const metadata: Metadata = { title: "Features", description: "Songs, Scri
 export default function Features() {
   return (
     <div className="mx-auto max-w-6xl px-5 pb-24 pt-32">
-      <h1 className="text-4xl font-semibold text-fg md:text-6xl">Features</h1>
+      <h1 className="text-3xl font-semibold text-fg md:text-4xl">Features</h1>
       <p className="mt-4 max-w-2xl text-muted">Everything below is based on the current KelzStudio interface.</p>
       <h2 className="mt-16 text-sm tracking-widest text-glow">RESOURCE LIBRARIES</h2>
       <div className="mt-8 space-y-20">{libraries.map((f) => (
         <section key={f.id} id={f.id} className="grid scroll-mt-24 items-start gap-8 lg:grid-cols-2">
-          <div><h3 className="text-2xl font-semibold text-fg">{f.title}</h3><p className="mt-2 text-muted">{f.summary}</p>
+          <div><h3 className="text-xl font-semibold text-fg">{f.title}</h3><p className="mt-2 text-muted">{f.summary}</p>
             <ul className="mt-4 list-disc space-y-1 pl-5 text-fg/80">{f.points.map((p) => <li key={p}>{p}</li>)}</ul></div>
           {f.shot && <Shot name={f.shot} />}
         </section>))}</div>
