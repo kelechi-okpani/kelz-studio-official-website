@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FaqSearch } from "@/components/FaqSearch";
 import { site } from "@/config/site";
-import { emailHref, whatsappHref } from "@/lib/contact";
+import { emailConfigured, emailHref, whatsappConfigured, whatsappHref } from "@/lib/contact";
 export const metadata: Metadata = { title: "Support", description: "Help, guides and FAQs for KelzStudio." };
 export default function Support() {
   return (
@@ -15,7 +15,7 @@ export default function Support() {
       </div>
       <h2 className="mb-4 mt-12 font-semibold text-fg">Frequently asked questions</h2><FaqSearch />
       <h2 className="mt-12 font-semibold text-fg">Contact us</h2>
-      <div className="mt-3 flex flex-wrap gap-3">{whatsappHref && <a className="btn-primary" href={whatsappHref} target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>}{emailHref && <a className="btn-ghost" href={emailHref}>Email support</a>}{site.issuesUrl && <a className="btn-ghost" href={site.issuesUrl}>Report an issue</a>}</div>
-      {!whatsappHref && !emailHref && !site.issuesUrl && <p className="mt-2 text-muted">Official support contact details have not been published yet.</p>}
+      <div className="mt-3 flex flex-wrap gap-3">{whatsappConfigured && <a className="btn-primary" href={whatsappHref} target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>}{emailConfigured && <a className="btn-ghost" href={emailHref}>Email support</a>}{site.issuesUrl && <a className="btn-ghost" href={site.issuesUrl}>Report an issue</a>}</div>
+      {!whatsappConfigured && !emailConfigured && !site.issuesUrl && <p className="mt-2 text-muted">Official support contact details have not been published yet.</p>}
     </div>);
 }
