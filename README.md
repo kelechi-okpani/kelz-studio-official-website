@@ -4,7 +4,7 @@ NEXT_PUBLIC_SITE_URL, NEXT_PUBLIC_WINDOWS_URL, NEXT_PUBLIC_MACOS_URL, NEXT_PUBLI
 Content lives in content/*.ts. Replace images in public/shots to update screenshots.
 
 ## Releases
-Source: GitHub Releases of `KelzNova/kelz-studio` (override with GITHUB_OWNER / GITHUB_REPO). Server-side only, cached 10 min (config/downloads.ts `revalidateSeconds`).
+Source: GitHub Releases of `kelechi-okpani/kelzStudio` (override with `GITHUB_OWNER` and `GITHUB_REPO`, or set `GITHUB_REPOSITORY` to the repository name). Server-side only, cached 5 min (config/downloads.ts `revalidateSeconds`).
 Optional server env `GITHUB_TOKEN` raises the rate limit (never sent to the browser). Installer detection: .exe/.msi = Windows, .dmg/.pkg = macOS; override via `assetRules`.
 
 ## Env-configured downloads (override GitHub assets per platform)
