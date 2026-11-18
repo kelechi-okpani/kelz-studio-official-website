@@ -1,17 +1,6 @@
-export const site = {
-  name: "KelzStudio",
-  company: "KelzNova Ltd.",
-  tagline: "One Platform. Every Presentation.",
-  description: "A powerful, easy-to-use presentation software for churches, businesses, events, and organizations.",
-  // TODO: set once the official domain is known (enables canonical URLs, sitemap, OG).
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "",
-  // TODO: supply official details. Nothing here is invented.
-  supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "",
-  // International format, digits only (e.g. 2348012345678). Leave empty to hide the WhatsApp button.
-  whatsappNumber: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(/\D/g, ""),
-  whatsappMessage: process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ?? "Hello KelzNova, I have a question about KelzStudio.",
-  issuesUrl: process.env.NEXT_PUBLIC_ISSUES_URL ?? "",
-};
+
+
+
 export const nav = [
   { label: "Overview", href: "/#overview" },
   { label: "Features", href: "/features" },
@@ -32,4 +21,108 @@ export const shots: Record<"hero" | "media" | "songs" | "scriptures" | "presenta
   options: { src: "/shots/options.png", w: 1533, h: 1032, alt: "KelzStudio Options dialog on Main Output, Song settings" },
   alternate: { src: "/shots/alternate.png", w: 1537, h: 1032, alt: "KelzStudio Options dialog on Alternate Output with monitor, position and margin settings" },
   output: { src: "/shots/output.png", w: 1918, h: 1078, alt: "A KelzStudio scripture slide as shown on the main output", bare: true },
+};
+
+
+
+
+export const site = {
+  name: "KelzStudio",
+  company: "KelzNova Ltd.",
+  tagline: "One Platform. Every Presentation.",
+
+  description:
+    "KelzStudio by KelzNova is an easy-to-use cross-platform presentation software for churches, worship teams, businesses, schools, event organizers, and organizations. Create and manage church lyrics, Bible verses, multimedia slides, announcements, and professional presentations with ease.",
+
+  keywords: [
+    // Brand keywords
+    "KelzStudio",
+    "Kelz Studio",
+    "KelzNova",
+    "KelzNova Ltd",
+
+    // General presentation software
+    "presentation software",
+    "best presentation software",
+    "cross platform presentation software",
+    "multimedia presentation software",
+    "professional presentation software",
+    "presentation maker",
+    "slideshow software",
+    "digital presentation software",
+    "presentation management software",
+    "presentation tools",
+
+    // Church and worship
+    "church presentation software",
+    "church media software",
+    "worship presentation software",
+    "church lyrics presentation software",
+    "Bible verse presentation software",
+    "church service presentation",
+    "worship lyrics software",
+    "church screen presentation",
+    "Sunday service presentation software",
+    "church announcement software",
+    "sermon presentation software",
+    "church multimedia software",
+
+    // Events and organizations
+    "event presentation software",
+    "event media software",
+    "live event presentation",
+    "conference presentation software",
+    "organization presentation software",
+    "event slideshow software",
+    "live presentation software",
+
+    // Education
+    "educational presentation software",
+    "classroom presentation software",
+    "school presentation software",
+    "teaching presentation tools",
+    "lecture presentation software",
+
+    // Business
+    "business presentation software",
+    "corporate presentation software",
+    "business slideshow software",
+    "professional slideshow maker",
+    "meeting presentation software",
+
+    // Media and workflow
+    "media management software",
+    "live presentation workflow",
+    "multimedia management software",
+    "screen display software",
+    "presentation display software",
+    "audio visual presentation software",
+    "digital screen presentation",
+
+    // Platform and discovery
+    "desktop presentation app",
+    "Windows presentation software",
+    "presentation software for Windows",
+    "cross platform presentation app",
+    "presentation software for churches",
+    "presentation software for events",
+  ],
+
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    "https://kelechi-okpani.com",
+
+  supportEmail:
+    process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "",
+
+  whatsappNumber:
+    (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "")
+      .replace(/\D/g, ""),
+
+  whatsappMessage:
+    process.env.NEXT_PUBLIC_WHATSAPP_MESSAGE ??
+    "Hello Kelz Studio! I would like to make an enquiry about your presentation software. Please share more information about its features, pricing, and how I can get started.",
+
+  issuesUrl:
+    process.env.NEXT_PUBLIC_ISSUES_URL ?? "",
 };
