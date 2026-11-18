@@ -22,7 +22,7 @@ export function PlatformDownload({ release, platform, arch }: { release: Release
             {!arch && archLabel[a.arch] && <div className="flex justify-between"><dt className="text-muted">Architecture</dt><dd className="text-fg">{archLabel[a.arch]}</dd></div>}
             {size && <div className="flex justify-between"><dt className="text-muted">Size</dt><dd className="text-fg">{size}</dd></div>}
             {a.downloads !== undefined && <div className="flex justify-between"><dt className="text-muted">Downloads</dt><dd className="font-medium text-fg">{a.downloads.toLocaleString("en-US")}</dd></div>}
-            {a.digest && <div className="flex justify-between gap-4"><dt className="shrink-0 text-muted">{a.source === "env" ? "Checksum" : "Checksum (GitHub)"}</dt><dd className="break-all text-right font-mono text-xs text-fg">{a.digest}</dd></div>}</dl>
+          </dl>
             <a href={a.url} className="btn-primary mt-4 w-full"><Download size={18} />Download for {arch ? (arch === "arm64" ? "Apple Silicon" : "Intel") : label}{!arch && archLabel[a.arch] && assets.length > 1 ? ` (${archLabel[a.arch]})` : ""}</a></div>); })}</div>}
     </div>);
 }
