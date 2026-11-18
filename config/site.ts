@@ -1,7 +1,7 @@
 export const site = {
   name: "KelzStudio",
   company: "KelzNova Ltd.",
-  tagline: "One Platform. Every Presentation.",
+  tagline: "One Platform. For Every Presentation.",
   description: "A powerful, easy-to-use presentation software for churches, businesses, events, and organizations.",
   // TODO: set once the official domain is known (enables canonical URLs, sitemap, OG).
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "",
