@@ -1,2 +1,22 @@
-export const metadata = { title: "Terms of Use" };
-export default function Page() { return <div className="mx-auto max-w-3xl px-5 pb-24 pt-32"><h1 className="text-3xl font-semibold text-fg">Terms of Use</h1><p className="mt-6 text-muted">This document has not been supplied yet. KelzNova Ltd. will publish it here.</p></div>; }
+import type { Metadata } from "next";
+import Link from "next/link";
+import { LegalDocument } from "@/components/legal/LegalDocument";
+import { site } from "@/config/site";
+import { terms, termsUpdated } from "@/content/terms";
+
+export const metadata: Metadata = {
+  title: "Terms of Use",
+  description: "The terms for using the KelzStudio website and the KelzStudio application.",
+  ...(site.url ? { alternates: { canonical: "/terms" } } : {}),
+};
+
+export default function TermsOfUse() {
+  return (
+    <LegalDocument
+      title="Terms of Use"
+      updated={termsUpdated}
+      sections={terms}
+      contactIntro={<>Questions about these terms? Read our <Link href="/privacy-policy" className="text-glow hover:underline">Privacy Policy</Link>, or contact KelzNova Ltd.</>}
+    />
+  );
+}

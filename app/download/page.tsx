@@ -25,6 +25,7 @@ export default async function Download() {
         {/* {r && d.ok && <DownloadStats release={r} all={d.releases} />} */}
         
         </>}
-      <p className="mt-10 text-sm text-muted">Need an earlier version? <Link href="/releases" className="text-glow hover:underline">View all releases</Link>. Installer signing and notarization status is not stated here until it has been confirmed.</p>
+      <ul className="mt-10 grid gap-2 text-sm text-muted md:grid-cols-2"><li>Windows: 64-bit installer.</li><li>macOS: separate builds for Apple Silicon and Intel.</li><li>Your libraries and files are stored on your computer.</li><li>Showing Office files as originals downloads LibreOffice the first time you use it.</li></ul>
+      <p className="mt-6 text-sm text-muted">Need an earlier version? <Link href="/releases" className="text-glow hover:underline">View all releases</Link>. Installer signing and notarization status is not stated here until it has been confirmed.</p>
     </div>);
 }

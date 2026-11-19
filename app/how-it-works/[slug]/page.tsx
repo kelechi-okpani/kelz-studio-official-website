@@ -18,6 +18,7 @@ export default async function Tutorial({ params }: P) {
       <ol className="mt-10 space-y-8">{t.steps.map((s, n) => (
         <li key={n} className="flex gap-4"><span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-semibold text-on-brand">{n + 1}</span>
           <div><p className="text-fg/80">{s.text}</p>{s.shot && <Image src={s.shot} alt="" width={1500} height={800} className="mt-4 h-auto w-full rounded-md border border-line" />}</div></li>))}</ol>
+      {t.table && <div className="mt-8 overflow-x-auto rounded-md border border-line"><table className="w-full text-left text-sm"><thead className="bg-surface2 text-muted"><tr><th className="p-3 font-medium">Shortcut</th><th className="p-3 font-medium">Action</th></tr></thead><tbody>{t.table.map(([k, v]) => <tr key={k} className="border-t border-line"><td className="p-3 font-mono text-fg">{k}</td><td className="p-3 text-fg/80">{v}</td></tr>)}</tbody></table></div>}
       {t.notes?.map((n) => <p key={n} className="mt-8 rounded-md border border-glow/30 bg-surface2 p-4 text-sm text-fg/80"><strong className="text-fg">Note: </strong>{n}</p>)}
       {!!related.length && <div className="mt-12"><h2 className="font-semibold text-fg">Related</h2><ul className="mt-2">{related.map((r) => <li key={r.slug}><Link className="text-glow" href={`/how-it-works/${r.slug}`}>{r.title}</Link></li>)}</ul></div>}
       <nav className="mt-14 flex justify-between border-t border-line pt-6 text-sm" aria-label="Guide navigation">

@@ -108,6 +108,12 @@ export const site = {
     "presentation software for events",
   ],
 
+  icons: {
+  icon: "/logo.png",
+  shortcut: "/logo.png",
+  apple: "/logo.png",
+  },  
+
   logo: "https://www.kelzstudio.com/logo.png",
 
   url:
