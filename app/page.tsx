@@ -15,12 +15,12 @@ import { libraries } from "@/content/features";
 const h2 = "text-3xl font-semibold tracking-tight text-fg md:text-4xl";
 const features: Story[] = libraries.map((f) => ({ id: f.id, title: f.title, text: f.summary, points: f.points, shot: f.shot ?? "scriptures", href: `/features#${f.id}` }));
 const workflow: Story[] = [
-  { id: "w1", title: "Organize your content", text: "Keep songs, scriptures, media and presentations in their own libraries.", shot: "media" },
-  { id: "w2", title: "Build your schedule", text: "Add items to the Schedule in the order you will present them, with notes.", shot: "songs" },
-  { id: "w3", title: "Customize your presentation", text: "Design themes in the Theme Editor and set text style in Options.", shot: "themes" },
-  { id: "w4", title: "Preview your content", text: "Check what you have selected in Preview before it reaches the audience.", shot: "scriptures" },
-  { id: "w5", title: "Present with confidence", text: "Send content to the Live output and use Logo, Black and Clear when you need them.", shot: "output" } ];
-const audiences = [[Church, "Churches and ministries", "Run songs, scriptures and media from a single service schedule.", "md:col-span-2 md:row-span-2"], [CalendarDays, "Conferences and events", "Prepare content ahead and send it live in order.", ""], [GraduationCap, "Educational institutions", "Present lessons, announcements and media.", ""], [Building2, "Businesses and organizations", "Deliver meetings and presentations with a clear live output.", "md:col-span-2"]] as const;
+  { id: "w1", title: "Organize your content", text: "Keep songs, scriptures, media, presentations and themes in their own libraries.", shot: "media" },
+  { id: "w2", title: "Build your schedule", text: "Add items to the Schedule in running order, with notes and a theme per item.", shot: "songs" },
+  { id: "w3", title: "Customize your presentation", text: "Design themes in the Theme Editor and set fonts, margins and transitions in Options.", shot: "themes" },
+  { id: "w4", title: "Preview your content", text: "Step through slides in Preview without changing the audience screen.", shot: "scriptures" },
+  { id: "w5", title: "Present with confidence", text: "Use Go Live, then Logo, Black, Clear and alerts, across Main, Alternate and Foldback displays.", shot: "output" } ];
+const audiences = [[Church, "Churches and ministries", "Songs, scriptures, media and nursery alerts in one service schedule.", "md:col-span-2 md:row-span-2"], [CalendarDays, "Conferences and events", "Prepare a running order ahead, send it live, and use a second screen or stage display.", ""], [GraduationCap, "Educational institutions", "Present lessons from PDF and Office pages, plus announcements and media.", ""], [Building2, "Businesses and organizations", "Show PDF, PowerPoint and Excel pages and media with a clear live output.", "md:col-span-2"]] as const;
 export default async function Home() {
   const d = await getReleases(); const latest = d.ok ? latestStable(d.releases) : undefined; const dl = downloadRelease(latest);
   return (<>

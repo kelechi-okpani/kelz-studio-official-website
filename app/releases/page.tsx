@@ -44,19 +44,23 @@ export default async function Releases({ searchParams }: { searchParams: SP }) {
 
 function Fallback({ reason }: { reason?: string }) {
   const dl = downloadRelease(undefined);
-  const hint = process.env.NODE_ENV !== "production" && reason ? <p className="mt-6 rounded-lg border border-line bg-surface2 p-4 text-sm text-muted">Dev note: GitHub Releases could not be read ({reason}). Set GITHUB_OWNER / GITHUB_REPO to the public distribution repository. GITHUB_TOKEN can raise API limits, but cannot make private assets public.</p> : null;
+const hint = process.env.NODE_ENV !== "production" && reason ? (
+  <p className="mt-6 rounded-lg border border-line bg-surface2 p-4 text-sm text-muted">
+    Setup note: Download versions could not be loaded ({reason}). Please check your download settings or contact support if the problem continues.
+  </p>
+) : null;
   if (!dl) return <Shell><Unavailable />{hint}</Shell>;
   return (
     <Shell>
       <h2 className="text-sm font-semibold tracking-[.18em] text-glow">CURRENT RELEASE</h2>
       <div className="mt-4 flex flex-wrap items-center gap-4">{dl.version && <VersionBadge version={dl.version} latest />}{dl.publishedAt && <span className="text-sm text-muted">Published {fmtDate(dl.publishedAt)}</span>}</div>
       <div className="mt-8"><DownloadGrid release={dl} /></div>
-      <p className="mt-10 max-w-2xl text-muted">Detailed release notes and earlier versions will appear here as soon as they are published on GitHub Releases.</p>
+      <p className="mt-10 max-w-1xl text-muted">Detailed release notes and earlier versions will appear here as soon as they are published.</p>
       {hint}
     </Shell>);
 }
 
 function Shell({ children }: { children: React.ReactNode }) {
-  return <div className="mx-auto max-w-6xl px-5 pb-28 pt-32"><h1 className="text-4xl font-semibold tracking-tight text-fg md:text-5xl">KelzStudio Releases</h1>
-    <p className="mb-14 mt-5 max-w-2xl text-base text-muted">Explore the latest updates, improvements, and releases of KelzStudio.</p>{children}</div>;
+  return <div className="mx-auto max-w-6xl px-5 pb-28 pt-32"><h1 className="text-2xl font-semibold tracking-tight text-fg md:text-2xl">KelzStudio Releases</h1>
+    <p className="mb-14 mt-5 max-w-1xl text-base text-muted">Explore the latest updates, improvements, and releases of KelzStudio.</p>{children}</div>;
 }
