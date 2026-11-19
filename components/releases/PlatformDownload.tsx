@@ -18,7 +18,7 @@ export function PlatformDownload({ release, platform, arch }: { release: Release
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand to-glow" aria-hidden />
       <div className="flex items-center gap-3 text-fg"><span className="flex h-12 w-12 items-center justify-center rounded-xl bg-surface2 text-brand dark:text-glow">{platform === "windows" ? <Win /> : <Apple size={26} />}</span>
         <div>
-          <h3 className="text-md font-semibold">KelzStudio for {base}{arch ? <span className="block text-base font-medium text-muted">{arch === "arm64" ? "Apple Silicon" : "Intel"}</span> : null}
+          <h3 className="text-md font-semibold">KelzStudio for {base}{arch ? <span className="block text-base text-xs text-muted">{arch === "arm64" ? "Apple Silicon" : "Intel"}</span> : null}
         </h3>
         {/* {meta && <p className="text-sm text-muted">{meta}</p>} */}
 
@@ -34,10 +34,11 @@ export function PlatformDownload({ release, platform, arch }: { release: Release
         : <div className="mt-6 flex flex-1 flex-col gap-5">{assets.map((a) => { const size = a.sizeLabel ?? (a.size ? fmtBytes(a.size) : ""); return (
           <div key={a.id} className="flex flex-1 flex-col"><dl className="space-y-2 text-sm">
             <div className="flex justify-between gap-4"><dt className="text-muted">File</dt><dd className="break-all text-right text-fg">{a.name}</dd></div>
-            {a.format && <div className="flex justify-between"><dt className="text-muted">Format</dt><dd className="text-fg">{a.format}</dd></div>}
-            {!arch && archLabel[a.arch] && <div className="flex justify-between"><dt className="text-muted">Architecture</dt><dd className="text-fg">{archLabel[a.arch]}</dd></div>}
+            {a.format && <div className="flex justify-between"><dt className="text-muted">Format
+              </dt><dd className="text-sm">{a.format}</dd></div>}
+            {!arch && archLabel[a.arch] && <div className="flex justify-between"><dt className="text-muted">Architecture</dt><dd className="text-sm">{archLabel[a.arch]}</dd></div>}
             {size && <div className="flex justify-between"><dt className="text-muted">Size</dt><dd className="text-fg">{size}</dd></div>}
-            {a.downloads !== undefined && <div className="flex justify-between"><dt className="text-muted">GitHub downloads</dt><dd className="font-medium text-fg">{a.downloads.toLocaleString("en-US")}</dd></div>}
+            {a.downloads !== undefined && <div className="flex justify-between"><dt className="text-muted">GitHub downloads</dt><dd className="font-medium text-sm">{a.downloads.toLocaleString("en-US")}</dd></div>}
           </dl>
             <TrackedDownloadLink href={a.url} platform={clickPlatformForAsset(platform, arch, a.arch)} releaseVersion={release.version} assetName={a.name}>
               <Download size={18} />
