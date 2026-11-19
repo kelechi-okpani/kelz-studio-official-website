@@ -2,7 +2,7 @@
 
 
 export const nav = [
-  { label: "Overview", href: "/#overview" },
+  { label: "Overview", href: "/" },
   { label: "Features", href: "/features" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Downloads", href: "/download" },
