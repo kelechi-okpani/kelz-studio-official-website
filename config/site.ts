@@ -9,6 +9,7 @@ export const nav = [
   { label: "Releases", href: "/releases" },
   { label: "Support", href: "/support" },
 ];
+
 // Real captures supplied by the developer. Swap files in /public/shots to update everywhere.
 export interface ShotInfo { src: string; w: number; h: number; alt: string; bare?: boolean }
 export const shots: Record<"hero" | "media" | "songs" | "scriptures" | "presentations" | "themes" | "options" | "alternate" | "output", ShotInfo> = {
@@ -29,19 +30,23 @@ export const shots: Record<"hero" | "media" | "songs" | "scriptures" | "presenta
 export const site = {
   name: "KelzStudio",
   company: "KelzNova Ltd.",
-  tagline: "One Platform. ForEvery Presentation.",
+  tagline: "One Platform. For Every Presentation.",
 
   description:
     "KelzStudio by KelzNova is an easy-to-use cross-platform presentation software for churches, worship teams, businesses, schools, event organizers, and organizations. Create and manage church lyrics, Bible verses, multimedia slides, announcements, and professional presentations with ease.",
 
   keywords: [
     // Brand keywords
+    "Kelz",
+    "Studio",
     "KelzStudio",
     "Kelz Studio",
     "KelzNova",
     "KelzNova Ltd",
 
     // General presentation software
+    "present",
+    "presentation",
     "presentation software",
     "best presentation software",
     "cross platform presentation software",
@@ -75,6 +80,9 @@ export const site = {
     "organization presentation software",
     "event slideshow software",
     "live presentation software",
+    "live",
+    "media",
+    "church media",
 
     // Education
     "educational presentation software",
